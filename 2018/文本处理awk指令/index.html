@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Zhangqi Kang">
+  
+  
+  
+  <link rel="prev" href="http://kangz.cc/2018/1_hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/" />
+  
+  <link rel="canonical" href="http://kangz.cc/2018/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86awk%E6%8C%87%E4%BB%A4/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           文本处理awk指令 | Zhangqi Kang
+       
+  </title>
+  <meta name="title" content="文本处理awk指令 | Zhangqi Kang">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http://kangz.cc"
+    },
+    "articleSection" : "posts",
+    "name" : "文本处理awk指令",
+    "headline" : "文本处理awk指令",
+    "description" : "AWK是一种处理文本文件的语言，是一个强大的文本分析工具。之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter Weinberger, 和 Brian Kernighan 的Family Name的首字符。
+语法 awk [选项参数] 'script' var=value file(s) awk [选项参数] -f scriptfile var=value file(s)  选项参数说明  -F fs or &ndash;field-separator fs 指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:。 -v var=value or &ndash;asign var=value 赋值一个用户定义变量。 -f scripfile or &ndash;file scriptfile 从脚本文件中读取awk命令。 -mf nnn and -mr nnn 对nnn值设置内在限制，-mf选项限制分配给nnn的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。 -W compact or &ndash;compat, -W traditional or &ndash;traditional 在兼容模式下运行awk。所以gawk的行为和标准的awk完全一样，所有的awk扩展都被忽略。 -W copyleft or &ndash;copyleft, -W copyright or &ndash;copyright 打印简短的版权信息。 -W help or &ndash;help, -W usage or &ndash;usage 打印全部awk选项和每个选项的简短说明。 -W lint or &ndash;lint 打印不能向传统unix平台移植的结构的警告。 -W lint-old or &ndash;lint-old 打印关于不能向传统unix平台移植的结构的警告。 -W posix 打开兼容模式。但有以下限制，不识别：/x、函数关键字、func、换码序列以及当fs是一个空格时，将新行作为一个域分隔符；操作符和=不能代替^和^=；fflush无效。 -W re-interval or &ndash;re-inerval 允许间隔正则表达式的使用，参考(grep中的Posix字符类)，如括号表达式[[:alpha:]]。 -W source program-text or &ndash;source program-text 使用program-text作为源代码，可与-f命令混用。 -W version or &ndash;version 打印bug报告信息的版本。  基本用法 已有log.",
+    "inLanguage" : "en-us",
+    "author" : "Zhangqi Kang",
+    "creator" : "Zhangqi Kang",
+    "publisher": "Zhangqi Kang",
+    "accountablePerson" : "Zhangqi Kang",
+    "copyrightHolder" : "Zhangqi Kang",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-11-01 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2018-11-01 00:00:00 &#43;0000 UTC",
+    "url" : "http://kangz.cc/2018/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86awk%E6%8C%87%E4%BB%A4/",
+    "wordCount" : "563",
+    "keywords" : [ "linux","awk", "Zhangqi Kang"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://kangz.cc">Zhangqi Kang</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博文</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/website/" title="">常用网站</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="http://micromouse.cc" title="">电脑鼠</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://kangz.cc">Zhangqi Kang</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博文</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/website/" title="">常用网站</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="http://micromouse.cc" title="">电脑鼠</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">文本处理awk指令</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://kangz.cc" rel="author">Zhangqi Kang</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-11-01 itemprop="datePublished">November 1, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://kangz.cc/categories/linux/"> Linux </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<p><code>AWK</code>是一种<code>处理文本文件</code>的语言，是一个强大的文本分析工具。之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter Weinberger, 和 Brian Kernighan 的Family Name的首字符。</p>
+
+<h2 id="语法">语法</h2>
+
+<pre><code class="language-shell">awk [选项参数] 'script' var=value file(s)
+awk [选项参数] -f scriptfile var=value file(s)
+</code></pre>
+
+<h3 id="选项参数说明">选项参数说明</h3>
+
+<ul>
+<li>-F fs or &ndash;field-separator fs
+指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:。</li>
+<li>-v var=value or &ndash;asign var=value
+赋值一个用户定义变量。</li>
+<li>-f scripfile or &ndash;file scriptfile
+从脚本文件中读取awk命令。</li>
+<li>-mf nnn and -mr nnn
+对nnn值设置内在限制，-mf选项限制分配给nnn的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。</li>
+<li>-W compact or &ndash;compat, -W traditional or &ndash;traditional
+在兼容模式下运行awk。所以gawk的行为和标准的awk完全一样，所有的awk扩展都被忽略。</li>
+<li>-W copyleft or &ndash;copyleft, -W copyright or &ndash;copyright
+打印简短的版权信息。</li>
+<li>-W help or &ndash;help, -W usage or &ndash;usage
+打印全部awk选项和每个选项的简短说明。</li>
+<li>-W lint or &ndash;lint
+打印不能向传统unix平台移植的结构的警告。</li>
+<li>-W lint-old or &ndash;lint-old
+打印关于不能向传统unix平台移植的结构的警告。</li>
+<li>-W posix
+打开兼容模式。但有以下限制，不识别：/x、函数关键字、func、换码序列以及当fs是一个空格时，将新行作为一个域分隔符；操作符<strong>和</strong>=不能代替^和^=；fflush无效。</li>
+<li>-W re-interval or &ndash;re-inerval
+允许间隔正则表达式的使用，参考(grep中的Posix字符类)，如括号表达式[[:alpha:]]。</li>
+<li>-W source program-text or &ndash;source program-text
+使用program-text作为源代码，可与-f命令混用。</li>
+<li>-W version or &ndash;version
+打印bug报告信息的版本。</li>
+</ul>
+
+<h2 id="基本用法">基本用法</h2>
+
+<p>已有log.txt文本内容如下：</p>
+
+<pre><code class="language-markdown">2 this is a test
+3 Are you like awk
+This's a test
+10 There are orange,apple,mongo
+</code></pre>
+
+<h3 id="用法一-输出每行的指定项">用法一：输出每行的指定项</h3>
+
+<pre><code class="language-shell">awk '{[pattern] action}' {filenames}   # 行匹配语句 awk '' 只能用单引号
+</code></pre>
+
+<ul>
+<li>将log.txt每行按照空格或者Tab分割，输出文本中每行的第1、4项？</li>
+</ul>
+
+<pre><code class="language-shell">awk '{print $1,$4}' log.txt
+</code></pre>
+
+<p>输出如下：</p>
+
+<pre><code class="language-shell"> 2 a
+ 3 like
+ This's
+ 10 orange,apple,mongo
+</code></pre>
+
+<ul>
+<li>将输出进行格式化：</li>
+</ul>
+
+<pre><code class="language-shell">awk '{printf &quot;%-8s %-10s\n&quot;,$1,$4}' log.txt  # 格式化输出
+</code></pre>
+
+<p>输出如下：</p>
+
+<pre><code class="language-shell"> 2        a
+ 3        like
+ This's
+ 10       orange,apple,mongo
+</code></pre>
+
+<h3 id="用法二-指定一个或多个分隔符">用法二：指定一个或多个分隔符</h3>
+
+<pre><code class="language-shell">awk -F  #-F相当于内置变量FS, 指定分割字符
+</code></pre>
+
+<ul>
+<li>使用逗号“,”对文本进行分割</li>
+</ul>
+
+<pre><code class="language-shell">awk -F, '{print $1,$2}'   log.txt
+</code></pre>
+
+<p>输出结果为：</p>
+
+<pre><code class="language-shell"> 2 this is a test
+ 3 Are you like awk
+ This's a test
+ 10 There are orange apple
+</code></pre>
+
+<ul>
+<li>使用内建变量分割</li>
+</ul>
+
+<pre><code class="language-shell">awk 'BEGIN{FS=&quot;,&quot;} {print $1,$2}'     log.txt
+</code></pre>
+
+<p>输出结果为：</p>
+
+<pre><code class="language-shell"> 2 this is a test
+ 3 Are you like awk
+ This's a test
+ 10 There are orange apple
+</code></pre>
+
+<ul>
+<li>使用多个分隔符分割文本。先使用空格分割，然后对分割结果再使用&rdquo;,&ldquo;分割</li>
+</ul>
+
+<pre><code class="language-shell">awk -F '[ ,]'  '{print $1,$2,$5}'   log.txt
+</code></pre>
+
+<p>输出结果为：</p>
+
+<pre><code class="language-shell"> 2 this test
+ 3 Are awk
+ This's a
+ 10 There apple
+</code></pre>
+
+<h3 id="用法三-对文本进行变量处理">用法三：对文本进行变量处理</h3>
+
+<pre><code class="language-shell">awk -v  # 设置变量
+</code></pre>
+
+<ul>
+<li>数字变量处理</li>
+</ul>
+
+<pre><code class="language-shell">awk -va=1 '{print $1,$1+a}' log.txt
+</code></pre>
+
+<p>输出结果：</p>
+
+<pre><code class="language-shell"> 2 3
+ 3 4
+ This's 1
+ 10 11
+</code></pre>
+
+<ul>
+<li>数字与字符变量处理</li>
+</ul>
+
+<pre><code class="language-shell">awk -va=1 -vb=s '{print $1,$1+a,$1b}' log.txt
+</code></pre>
+
+<p>输出结果为：</p>
+
+<pre><code class="language-shell"> 2 3 2s
+ 3 4 3s
+ This's 1 This'ss
+ 10 11 10s
+</code></pre>
+
+<h3 id="用法四-awk脚本处理">用法四：awk脚本处理</h3>
+
+<pre><code class="language-shell">awk -f {awk脚本} {文件名}
+</code></pre>
+
+<p>例如：</p>
+
+<pre><code class="language-shell">awk -f cal.awk log.txt
+</code></pre>
+
+<h3 id="用法五-条件输出">用法五：条件输出</h3>
+
+<ul>
+<li>过滤第一列行号大于2的行</li>
+</ul>
+
+<pre><code class="language-shell">awk '$1&gt;2' log.txt    #命令
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code class="language-shell">3 Are you like awk
+This's a test
+10 There are orange,apple,mongo
+</code></pre>
+
+<ul>
+<li>过滤第一列行号等于2的行</li>
+</ul>
+
+<pre><code class="language-shell">awk '$1==2 {print $1,$3}' log.txt    #命令
+</code></pre>
+
+<ul>
+<li>过滤第一列行号大于2并且第二列等于&rsquo;Are&rsquo;的行</li>
+</ul>
+
+<pre><code class="language-shell">awk '$1&gt;2 &amp;&amp; $2==&quot;Are&quot; {print $1,$2,$3}' log.txt    #命令
+</code></pre>
+
+<h3 id="用法六-正则匹配">用法六： 正则匹配</h3>
+
+<ul>
+<li>输出第二列包含 &ldquo;th&rdquo;，并打印该行的第二列与第四列。</li>
+</ul>
+
+<p>==~==表示模式开始。==//== 中是模式。</p>
+
+<pre><code class="language-shell">awk '$2 ~ /th/ {print $2,$4}' log.txt
+</code></pre>
+
+<ul>
+<li>输出文件中所有包含&rdquo;re&rdquo; 的行</li>
+</ul>
+
+<pre><code class="language-shell">awk '/re/ ' log.txt
+</code></pre>
+
+<ul>
+<li>忽略匹配大小写</li>
+</ul>
+
+<pre><code class="language-shell">awk 'BEGIN{IGNORECASE=1} /this/' log.txt
+---------------------------------------------
+2 this is a test
+This's a test
+</code></pre>
+
+<ul>
+<li>模式取反</li>
+</ul>
+
+<pre><code class="language-shell">awk '$2 !~ /th/ {print $2,$4}' log.txt
+</code></pre>
+
+<h2 id="awk脚本">awk脚本</h2>
+
+<p>关于awk脚本，我们需要注意两个关键词BEGIN和END。</p>
+
+<ul>
+<li>BEGIN{ 这里面放的是执行前的语句 }</li>
+<li>END {这里面放的是处理完所有的行后要执行的语句 }</li>
+<li>{这里面放的是处理每一行时要执行的语句}</li>
+</ul>
+
+<p>假设有这么一个学生成绩表文件：</p>
+
+<pre><code class="language-shell">$ cat score.txt
+Marry   2143 78 84 77
+Jack    2321 66 78 45
+Tom     2122 48 77 71
+Mike    2537 87 97 95
+Bob     2415 40 57 62
+</code></pre>
+
+<p>awk处理脚本如下：</p>
+
+<pre><code class="language-shell">$ cat cal.awk
+#!/bin/awk -f
+#运行前
+BEGIN {
+    math = 0
+    english = 0
+    computer = 0
+ 
+    printf &quot;NAME    NO.   MATH  ENGLISH  COMPUTER   TOTAL\n&quot;
+    printf &quot;---------------------------------------------\n&quot;
+}
+#运行中
+{
+    math+=$3
+    english+=$4
+    computer+=$5
+    printf &quot;%-6s %-6s %4d %8d %8d %8d\n&quot;, $1, $2, $3,$4,$5, $3+$4+$5
+}
+#运行后
+END {
+    printf &quot;---------------------------------------------\n&quot;
+    printf &quot;  TOTAL:%10d %8d %8d \n&quot;, math, english, computer
+    printf &quot;AVERAGE:%10.2f %8.2f %8.2f\n&quot;, math/NR, english/NR, computer/NR
+}
+</code></pre>
+
+<p>输出执行效果：</p>
+
+<pre><code class="language-shell">awk -f cal.awk score.txt
+NAME    NO.   MATH  ENGLISH  COMPUTER   TOTAL
+---------------------------------------------
+Marry  2143     78       84       77      239
+Jack   2321     66       78       45      189
+Tom    2122     48       77       71      196
+Mike   2537     87       97       95      279
+Bob    2415     40       57       62      159
+---------------------------------------------
+  TOTAL:       319      393      350
+AVERAGE:     63.80    78.60    70.00
+</code></pre>
+
+<h2 id="awk内建变量">awk内建变量</h2>
+
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$n</td>
+<td>当前记录的第n个字段，字段间由FS分隔</td>
+</tr>
+
+<tr>
+<td>$0</td>
+<td>完整的输入记录</td>
+</tr>
+
+<tr>
+<td>ARGC</td>
+<td>命令行参数的数目</td>
+</tr>
+
+<tr>
+<td>ARGIND</td>
+<td>命令行中当前文件的位置(从0开始算)</td>
+</tr>
+
+<tr>
+<td>ARGV</td>
+<td>包含命令行参数的数组</td>
+</tr>
+
+<tr>
+<td>CONVFMT</td>
+<td>数字转换格式(默认值为%.6g)ENVIRON环境变量关联数组</td>
+</tr>
+
+<tr>
+<td>ERRNO</td>
+<td>最后一个系统错误的描述</td>
+</tr>
+
+<tr>
+<td>FIELDWIDTHS</td>
+<td>字段宽度列表(用空格键分隔)</td>
+</tr>
+
+<tr>
+<td>FILENAME</td>
+<td>当前文件名</td>
+</tr>
+
+<tr>
+<td>FNR</td>
+<td>各文件分别计数的行号</td>
+</tr>
+
+<tr>
+<td>==FS==</td>
+<td>字段分隔符(默认是任何空格)</td>
+</tr>
+
+<tr>
+<td>==IGNORECASE==</td>
+<td>如果为真，则进行忽略大小写的匹配</td>
+</tr>
+
+<tr>
+<td>NF</td>
+<td>一条记录的字段的数目</td>
+</tr>
+
+<tr>
+<td>==NR==</td>
+<td>已经读出的记录数，就是行号，从1开始</td>
+</tr>
+
+<tr>
+<td>OFMT</td>
+<td>数字的输出格式(默认值是%.6g)</td>
+</tr>
+
+<tr>
+<td>OFS</td>
+<td>输出记录分隔符（输出换行符），输出时用指定的符号代替换行符</td>
+</tr>
+
+<tr>
+<td>ORS</td>
+<td>输出记录分隔符(默认值是一个换行符)</td>
+</tr>
+
+<tr>
+<td>RLENGTH</td>
+<td>由match函数所匹配的字符串的长度</td>
+</tr>
+
+<tr>
+<td>RS</td>
+<td>记录分隔符(默认是一个换行符)</td>
+</tr>
+
+<tr>
+<td>RSTART</td>
+<td>由match函数所匹配的字符串的第一个位置</td>
+</tr>
+
+<tr>
+<td>SUBSEP</td>
+<td>数组下标分隔符(默认值是/034)</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Zhangqi Kang </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://kangz.cc/2018/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86awk%E6%8C%87%E4%BB%A4/>http://kangz.cc/2018/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86awk%E6%8C%87%E4%BB%A4/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://kangz.cc/tags/linux/">
+                    #linux</a></span>
+            
+            <span class="tag"><a href="http://kangz.cc/tags/awk/">
+                    #awk</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://kangz.cc">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://kangz.cc/2018/1_hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/" class="prev" rel="prev" title="1.Hadoop学习路线图"><i class="iconfont icon-left"></i>&nbsp;1.Hadoop学习路线图</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2018</span>
+        
+        
+         
+		<span> | Powered by </span>
+		<span class="with-love">
+			<i class="iconfont icon-love"></i> 
+        </span>
+        
+			<span class="author" itemprop="copyrightHolder"><a href="http://kangz.cc">Zhangqi Kang</a></span> 
+        
+
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+     </div>
+  </body>
+</html>

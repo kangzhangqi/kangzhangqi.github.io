@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Zhangqi Kang">
+  
+  
+  
+  
+  <link rel="next" href="http://kangz.cc/2018/3_hadoop_spark_%E5%88%9D%E6%8E%A2/" />
+  <link rel="canonical" href="http://kangz.cc/2018/4_hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           4.Hadoop与Spark的区别 | Zhangqi Kang
+       
+  </title>
+  <meta name="title" content="4.Hadoop与Spark的区别 | Zhangqi Kang">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http://kangz.cc"
+    },
+    "articleSection" : "posts",
+    "name" : "4.Hadoop与Spark的区别",
+    "headline" : "4.Hadoop与Spark的区别",
+    "description" : "解决不同层面的问题 Hadoop和Spark两者都是大数据框架，但是各自存在的目的不尽相同。
+Hadoop实质上更多是一个分布式数据基础设施: 它将巨大的数据集分派到一个由普通计算机组成的集群中的多个节点进行存储，意味着您不需要购买和维护昂贵的服务器硬件。 同时，Hadoop还会索引和跟踪这些数据，让大数据处理和分析效率达到前所未有的高度。
+Spark则是一个专门用来对那些分布式存储的大数据进行处理的工具，它并不会进行分布式数据的存储。
+应用场景的区别 Hadoop除了提供为大家所共识的HDFS分布式数据存储功能之外，还提供了叫做MapReduce的数据处理功能。所以这里我们完全可以抛开Spark，使用Hadoop自身的MapReduce来完成数据的处理。
+Spark也不是非要依附在Hadoop身上才能生存。但如上所述，毕竟它没有提供文件管理系统，所以，它必须和其他的分布式文件系统进行集成才能运作。这里我们可以选择Hadoop的HDFS,也可以选择其他的基于云的数据系统平台。但Spark默认来说还是被用在Hadoop上面的，毕竟，大家都认为它们的结合是最好的。
+MapReduce举例假设我们要数图书馆中的所有书。你数1号书架，我数2号书架。这就是“Map”。我们人越多，数书就更快。现在我们到一起，把所有人的统计数加在一起。这就是“Reduce”。
+数据处理速度的区别 Spark因为其处理数据的方式不一样，会比MapReduce快上很多。MapReduce是分步对数据进行处理的：从集群中读取数据，进行一次处理，将结果写到集群，从集群中读取更新后的数据，进行下一次的处理，将结果写到集群，等等。反观Spark，它会在内存中以接近“实时”的时间完成所有的数据分析：从集群中读取数据，完成所有必须的分析处理，将结果写回集群，完成。Spark的批处理速度比MapReduce快近10倍，内存中的数据分析速度则快近100倍。
+可以根据应用场景选择Hadoop或Spark。如果需要处理的数据和结果需求大部分情况下是静态的，且你也有耐心等待批处理的完成的话，MapReduce的处理方式也是完全可以接受的。但如果你需要对流数据进行分析，比如那些来自于工厂的传感器收集回来的实时数据，又或者说你的应用是需要多重数据处理的，那么你也许更应该使用Spark进行处理。
+大部分机器学习算法都是需要多重数据处理的。此外，通常会用到Spark的应用场景有以下方面：实时的市场活动，在线产品推荐，网络安全分析，机器日记监控等。",
+    "inLanguage" : "en-us",
+    "author" : "Zhangqi Kang",
+    "creator" : "Zhangqi Kang",
+    "publisher": "Zhangqi Kang",
+    "accountablePerson" : "Zhangqi Kang",
+    "copyrightHolder" : "Zhangqi Kang",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-31 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2018-10-31 00:00:00 &#43;0000 UTC",
+    "url" : "http://kangz.cc/2018/4_hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/",
+    "wordCount" : "14",
+    "keywords" : [ "Hadoop","Spark","大数据", "Zhangqi Kang"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://kangz.cc">Zhangqi Kang</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博文</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/website/" title="">常用网站</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="http://micromouse.cc" title="">电脑鼠</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://kangz.cc">Zhangqi Kang</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博文</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/website/" title="">常用网站</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="http://micromouse.cc" title="">电脑鼠</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">4.Hadoop与Spark的区别</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://kangz.cc" rel="author">Zhangqi Kang</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-31 itemprop="datePublished">October 31, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://kangz.cc/categories/hadoop/"> Hadoop </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="解决不同层面的问题">解决不同层面的问题</h2>
+
+<p>Hadoop和Spark两者都是大数据框架，但是各自存在的目的不尽相同。</p>
+
+<p><code>Hadoop</code>实质上更多是一个分布式数据基础设施: 它将巨大的数据集分派到一个由普通计算机组成的集群中的多个节点进行<code>存储</code>，意味着您不需要购买和维护昂贵的服务器硬件。 同时，Hadoop还会索引和跟踪这些数据，让大数据处理和分析效率达到前所未有的高度。</p>
+
+<p><code>Spark</code>则是一个专门用来对那些分布式存储的大数据进行<code>处理</code>的工具，它并不会进行分布式数据的存储。</p>
+
+<h2 id="应用场景的区别">应用场景的区别</h2>
+
+<p><code>Hadoop</code>除了提供为大家所共识的HDFS分布式数据存储功能之外，还提供了叫做MapReduce的数据处理功能。所以这里我们完全可以抛开Spark，使用Hadoop自身的MapReduce来完成数据的处理。</p>
+
+<p><code>Spark</code>也不是非要依附在Hadoop身上才能生存。但如上所述，毕竟它没有提供文件管理系统，所以，它必须和其他的分布式文件系统进行集成才能运作。这里我们可以选择Hadoop的HDFS,也可以选择其他的基于云的数据系统平台。但Spark默认来说还是被用在Hadoop上面的，毕竟，大家都认为它们的结合是最好的。</p>
+
+<p><code>MapReduce举例</code>假设我们要数图书馆中的所有书。你数1号书架，我数2号书架。这就是“Map”。我们人越多，数书就更快。现在我们到一起，把所有人的统计数加在一起。这就是“Reduce”。</p>
+
+<h2 id="数据处理速度的区别">数据处理速度的区别</h2>
+
+<p>Spark因为其处理数据的方式不一样，会比MapReduce快上很多。<code>MapReduce</code>是分步对数据进行处理的：从集群中读取数据，进行一次处理，将结果写到集群，从集群中读取更新后的数据，进行下一次的处理，将结果写到集群，等等。反观<code>Spark</code>，它会在内存中以接近“实时”的时间完成所有的数据分析：从集群中读取数据，完成所有必须的分析处理，将结果写回集群，完成。Spark的批处理速度比MapReduce快近10倍，内存中的数据分析速度则快近100倍。</p>
+
+<p>可以<code>根据应用场景选择</code>Hadoop或Spark。如果需要处理的数据和结果需求大部分情况下是静态的，且你也有耐心等待批处理的完成的话，MapReduce的处理方式也是完全可以接受的。但如果你需要对流数据进行分析，比如那些来自于工厂的传感器收集回来的实时数据，又或者说你的应用是需要多重数据处理的，那么你也许更应该使用Spark进行处理。</p>
+
+<p>大部分机器学习算法都是需要多重数据处理的。此外，通常会用到Spark的应用场景有以下方面：实时的市场活动，在线产品推荐，网络安全分析，机器日记监控等。</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Zhangqi Kang </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://kangz.cc/2018/4_hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/>http://kangz.cc/2018/4_hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://kangz.cc/tags/hadoop/">
+                    #Hadoop</a></span>
+            
+            <span class="tag"><a href="http://kangz.cc/tags/spark/">
+                    #Spark</a></span>
+            
+            <span class="tag"><a href="http://kangz.cc/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                    #大数据</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://kangz.cc">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="http://kangz.cc/2018/3_hadoop_spark_%E5%88%9D%E6%8E%A2/" class="next" rel="next" title="3.Hadoop Spark 初探">3.Hadoop Spark 初探&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2018</span>
+        
+        
+         
+		<span> | Powered by </span>
+		<span class="with-love">
+			<i class="iconfont icon-love"></i> 
+        </span>
+        
+			<span class="author" itemprop="copyrightHolder"><a href="http://kangz.cc">Zhangqi Kang</a></span> 
+        
+
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+     </div>
+  </body>
+</html>

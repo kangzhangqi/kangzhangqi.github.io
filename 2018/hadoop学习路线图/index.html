@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Zhangqi Kang">
+  
+  
+  
+  
+  <link rel="next" href="http://kangz.cc/2018/hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/" />
+  <link rel="canonical" href="http://kangz.cc/2018/hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           如何学习Hadoop | Zhangqi Kang
+       
+  </title>
+  <meta name="title" content="如何学习Hadoop | Zhangqi Kang">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http://kangz.cc"
+    },
+    "articleSection" : "posts",
+    "name" : "如何学习Hadoop",
+    "headline" : "如何学习Hadoop",
+    "description" : "Hadoop家族常用的项目包括:Hadoop, Hive, Pig, HBase, Sqoop, Mahout,Zookeeper,Avro,Ambari,Chukwa。新增加的项目包括:YARN,Hcatalog,Oozie,Cassandra,Hama,Whirr,Flume,Bigtop,Crunch,Hue等
+主要知识点  hadoop基本概念、伪分布式Hadoop集群、HDFS、MapReduce演示 HDFS原理、使用 MapReduce原理、使用 常见算法在Hadoop上的实现和shuffle机制 Hadoop中HA机制的原理全分布式集群部署 Hbase Hive 原理 storm（实时计算） kafka（消息队列） 实战项目练习  学习路线 Hadoop家族产品  Apache Hadoop: 是Apache开源组织的一个分布式计算开源框架，提供了一个分布式文件系统子项目HDFS（Hadoop Distributed FileSystem,HDFS）和支持MapReduce分布式计算的软件架构。 Apache Hive: 是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，通过类SQL语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。 Apache Pig: 是一个基于Hadoop的大规模数据分析工具，它提供的SQL-LIKE语言叫Pig Latin，该语言的编译器会把类SQL的数据分析请求转换为一系列经过优化处理的MapReduce运算。 Apache HBase: 是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server上搭建起大规模结构化存储集群。 Apache Sqoop: 是一个用来将Hadoop和关系型数据库中的数据相互转移的工具，可以将一个关系型数据库（MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。 Apache Zookeeper: 是一个为分布式应用所设计的分布的、开源的协调服务，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。 Apache Mahout:是基于Hadoop的机器学习和数据挖掘的一个分布式框架。Mahout用MapReduce实现了部分数据挖掘算法，解决了并行挖掘的问题。 Apache Cassandra:是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存简单格式数据，集Google BigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身。 Apache Avro: 是一个数据序列化系统，设计用于支持数据密集型，大批量数据交换的应用。Avro是新的数据序列化格式与传输工具，将逐步取代Hadoop原有的IPC机制 Apache Ambari: 是一种基于Web工具，支持Hadoop集群的供应、管理和监控。 Apache Chukwa: 是一个开源的用于监控大型分布式系统的数据收集系统，它可以将各种各样类型的数据收集成适合 Hadoop 处理的文件保存在 HDFS 中供 Hadoop 进行各种 MapReduce 操作。 Apache Hama: 是一个基于HDFS的BSP（Bulk Synchronous Parallel)并行计算框架, Hama可用于包括图、矩阵和网络算法在内的大规模、大数据计算。 Apache Flume: 是一个分布的、可靠的、高可用的海量日志聚合的系统，可用于日志数据收集，日志数据处理，日志数据传输。 Apache Giraph: 是一个可伸缩的分布式迭代图处理系统， 基于Hadoop平台，灵感来自 BSP (bulk synchronous parallel) 和 Google 的 Pregel。 Apache Oozie: 是一个工作流引擎服务器, 用于管理和协调运行在Hadoop平台上（HDFS、Pig和MapReduce）的任务。 Apache Crunch: 是基于Google的FlumeJava库编写的Java库，用于创建MapReduce程序。与Hive，Pig类似，Crunch提供了用于实现如连接数据、执行聚合和排序记录等常见任务的模式库 Apache Whirr: 是一套运行于云服务的类库（包括Hadoop），可提供高度的互补性。Whirr学支持Amazon EC2和Rackspace的服务。 Apache Bigtop: 是一个对Hadoop及其周边生态进行打包，分发和测试的工具。 Apache HCatalog: 是基于Hadoop的数据表和存储管理，实现中央的元数据和模式管理，跨越Hadoop和RDBMS，利用Pig和Hive提供关系视图。 Cloudera Hue: 是一个基于WEB的监控和管理系统，实现对HDFS，MapReduce/YARN, HBase, Hive, Pig的web化操作和管理。  Hadoop家族博客文章 下面我将分别介绍各个产品的安装和使用，以我经验总结我的学习路线。",
+    "inLanguage" : "en-us",
+    "author" : "Zhangqi Kang",
+    "creator" : "Zhangqi Kang",
+    "publisher": "Zhangqi Kang",
+    "accountablePerson" : "Zhangqi Kang",
+    "copyrightHolder" : "Zhangqi Kang",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-31 00:00:00 &#43;0000 UTC",
+    "dateModified" : "2018-10-31 00:00:00 &#43;0000 UTC",
+    "url" : "http://kangz.cc/2018/hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/",
+    "wordCount" : "175",
+    "keywords" : [ "Hadoop","Spark","大数据", "Zhangqi Kang"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://kangz.cc">Zhangqi Kang</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博文</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/website/" title="">常用网站</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="http://micromouse.cc" title="">电脑鼠</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://kangz.cc">Zhangqi Kang</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博文</a>
+                
+                <a class="menu-item" href="/categories/" title="">分类</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/website/" title="">常用网站</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="http://micromouse.cc" title="">电脑鼠</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">如何学习Hadoop</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://kangz.cc" rel="author">Zhangqi Kang</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-31 itemprop="datePublished">October 31, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://kangz.cc/categories/hadoop/"> Hadoop </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<p>Hadoop家族常用的项目包括:<code>Hadoop</code>, <code>Hive</code>, <code>Pig</code>, <code>HBase</code>, <code>Sqoop</code>, <code>Mahout</code>,<code>Zookeeper</code>,<code>Avro</code>,<code>Ambari</code>,<code>Chukwa</code>。新增加的项目包括:<code>YARN</code>,<code>Hcatalog</code>,<code>Oozie</code>,<code>Cassandra</code>,<code>Hama</code>,<code>Whirr</code>,<code>Flume</code>,<code>Bigtop</code>,<code>Crunch</code>,<code>Hue</code>等</p>
+
+<h2 id="主要知识点">主要知识点</h2>
+
+<ol>
+<li>hadoop基本概念、伪分布式Hadoop集群、HDFS、MapReduce演示</li>
+<li>HDFS原理、使用</li>
+<li>MapReduce原理、使用</li>
+<li>常见算法在Hadoop上的实现和shuffle机制</li>
+<li>Hadoop中HA机制的原理全分布式集群部署</li>
+<li>Hbase Hive 原理</li>
+<li>storm（实时计算） kafka（消息队列）</li>
+<li>实战项目练习</li>
+</ol>
+
+<h2 id="学习路线">学习路线</h2>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.fens.me/wp-content/uploads/2013/09/hadoopFamilyRoadmap.png" alt="hadoopFamilyRoadmap" class="lazyload"><figcaption class="image-caption">hadoopFamilyRoadmap</figcaption></figure></p>
+
+<h2 id="hadoop家族产品">Hadoop家族产品</h2>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.fens.me/wp-content/uploads/2013/09/HadoopFamilySmall.png" alt="HadoopFamilySmall" class="lazyload"><figcaption class="image-caption">HadoopFamilySmall</figcaption></figure></p>
+
+<ul>
+<li><a href="http://hadoop.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Hadoop</a>: 是Apache开源组织的一个分布式计算开源框架，提供了一个分布式文件系统子项目<code>HDFS</code>（Hadoop Distributed FileSystem,HDFS）和支持<code>MapReduce</code>分布式计算的软件架构。</li>
+<li><a href="http://hive.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Hive</a>: 是基于Hadoop的一个<code>数据仓库</code>工具，可以将结构化的数据文件映射为一张数据库表，通过类<code>SQL</code>语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。</li>
+<li><a href="http://pig.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Pig</a>: 是一个基于Hadoop的大规模<code>数据分析</code>工具，它提供的SQL-LIKE语言叫Pig Latin，该语言的编译器会把类SQL的数据分析请求转换为一系列经过优化处理的MapReduce运算。</li>
+<li><a href="http://hbase.apache.org/" rel="nofollow noreferrer" target="_blank">Apache HBase</a>: 是一个高可靠性、高性能、面向列、可伸缩的<code>分布式存储系统</code>，利用HBase技术可在廉价PC Server上搭建起大规模结构化存储集群。</li>
+<li><a href="http://sqoop.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Sqoop</a>: 是一个用来将Hadoop和关系型数据库中的数据相互转移的工具，可以将一个关系型数据库（MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。</li>
+<li><a href="http://zookeeper.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Zookeeper</a>: 是一个为分布式应用所设计的分布的、开源的<code>协调服务</code>，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。</li>
+<li><a href="http://mahout.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Mahout</a>:是基于Hadoop的机器学习和数据挖掘的一个分布式框架。Mahout用MapReduce实现了部分<code>数据挖掘</code>算法，解决了并行挖掘的问题。</li>
+<li><a href="http://cassandra.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Cassandra</a>:是一套开源分布式<code>NoSQL数据库</code>系统。它最初由Facebook开发，用于储存简单格式数据，集Google BigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身。</li>
+<li><a href="http://avro.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Avro</a>: 是一个<code>数据序列化</code>系统，设计用于支持数据密集型，大批量数据交换的应用。Avro是新的数据序列化格式与传输工具，将逐步取代Hadoop原有的IPC机制</li>
+<li><a href="http://incubator.apache.org/ambari/" rel="nofollow noreferrer" target="_blank">Apache Ambari</a>: 是一种基于<code>Web工具</code>，支持Hadoop集群的供应、管理和监控。</li>
+<li><a href="http://incubator.apache.org/chukwa/" rel="nofollow noreferrer" target="_blank">Apache Chukwa</a>: 是一个开源的用于监控大型分布式系统的<code>数据收集</code>系统，它可以将各种各样类型的数据收集成适合 Hadoop 处理的文件保存在 HDFS 中供 Hadoop 进行各种 MapReduce 操作。</li>
+<li><a href="http://hama.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Hama</a>: 是一个基于HDFS的BSP（Bulk Synchronous Parallel)<code>并行计算</code>框架, Hama可用于包括图、矩阵和网络算法在内的大规模、大数据计算。</li>
+<li><a href="http://flume.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Flume</a>: 是一个分布的、可靠的、高可用的海量<code>日志聚合</code>的系统，可用于日志数据收集，日志数据处理，日志数据传输。</li>
+<li><a href="http://giraph.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Giraph</a>: 是一个可伸缩的分布式<code>迭代图处理</code>系统， 基于Hadoop平台，灵感来自 BSP (bulk synchronous parallel) 和 Google 的 Pregel。</li>
+<li><a href="http://oozie.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Oozie</a>: 是一个<code>工作流引擎</code>服务器, 用于管理和协调运行在Hadoop平台上（HDFS、Pig和MapReduce）的任务。</li>
+<li><a href="http://incubator.apache.org/crunch/" rel="nofollow noreferrer" target="_blank">Apache Crunch</a>: 是基于Google的FlumeJava库编写的<code>Java库</code>，用于创建MapReduce程序。与Hive，Pig类似，Crunch提供了用于实现如<code>连接数据</code>、<code>执行聚合</code>和<code>排序记录</code>等常见任务的模式库</li>
+<li><a href="http://whirr.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Whirr</a>: 是一套运行于云服务的类库（包括Hadoop），可提供高度的互补性。Whirr学支持Amazon EC2和Rackspace的服务。</li>
+<li><a href="http://bigtop.apache.org/" rel="nofollow noreferrer" target="_blank">Apache Bigtop</a>: 是一个对Hadoop及其周边生态进行打包，分发和测试的工具。</li>
+<li><a href="http://incubator.apache.org/hcatalog/" rel="nofollow noreferrer" target="_blank">Apache HCatalog</a>: 是基于Hadoop的<code>数据表和存储管理</code>，实现中央的元数据和模式管理，跨越Hadoop和RDBMS，利用Pig和Hive提供关系视图。</li>
+<li><a href="http://cloudera.github.io/hue/" rel="nofollow noreferrer" target="_blank">Cloudera Hue</a>: 是一个基于<code>WEB的监控和管理</code>系统，实现对HDFS，MapReduce/YARN, HBase, Hive, Pig的web化操作和管理。</li>
+</ul>
+
+<h2 id="hadoop家族博客文章">Hadoop家族博客文章</h2>
+
+<p>下面我将分别介绍各个产品的安装和使用，以我经验总结我的学习路线。</p>
+
+<p><strong>Hadoop</strong></p>
+
+<ul>
+<li>Hadoop学习路线图</li>
+<li>Yarn学习路线图</li>
+<li><a href="http://blog.fens.me/hadoop-maven-eclipse/" rel="nofollow noreferrer" target="_blank">用Maven构建Hadoop项目</a></li>
+<li><a href="http://blog.fens.me/hadoop-history-source-install/" rel="nofollow noreferrer" target="_blank">Hadoop历史版本安装</a></li>
+<li><a href="http://blog.fens.me/hadoop-hdfs-api/" rel="nofollow noreferrer" target="_blank">Hadoop编程调用HDFS</a></li>
+<li><a href="http://blog.fens.me/hadoop-mapreduce-log-kpi/" rel="nofollow noreferrer" target="_blank">海量Web日志分析 用Hadoop提取KPI统计指标</a></li>
+<li><a href="http://blog.fens.me/hadoop-mapreduce-recommand/" rel="nofollow noreferrer" target="_blank">用Hadoop构建电影推荐系统</a></li>
+<li><a href="http://blog.fens.me/hadoop-base-kvm/" rel="nofollow noreferrer" target="_blank">创建Hadoop母体虚拟机</a></li>
+<li><a href="http://blog.fens.me/hadoop-clone-node/" rel="nofollow noreferrer" target="_blank">克隆虚拟机增加Hadoop节点</a></li>
+<li><a href="http://blog.fens.me/r-hadoop-intro/" rel="nofollow noreferrer" target="_blank">R语言为Hadoop注入统计血脉</a></li>
+<li><a href="http://blog.fens.me/rhadoop-hadoop/" rel="nofollow noreferrer" target="_blank">RHadoop实践系列之一 Hadoop环境搭建</a></li>
+<li><a href="http://blog.fens.me/hadoop-mapreduce-matrix/" rel="nofollow noreferrer" target="_blank">用MapReduce实现矩阵乘法</a></li>
+<li><a href="http://blog.fens.me/algorithm-pagerank-mapreduce/" rel="nofollow noreferrer" target="_blank">PageRank算法并行实现</a></li>
+<li><a href="http://blog.fens.me/hadoop-social-peoplerank/" rel="nofollow noreferrer" target="_blank">PeopleRank从社交网络中发现个体价值</a></li>
+</ul>
+
+<p><strong>Hive</strong></p>
+
+<ul>
+<li><a href="http://blog.fens.me/hadoop-hive-roadmap/" rel="nofollow noreferrer" target="_blank">Hive学习路线图</a></li>
+<li><a href="http://blog.fens.me/hadoop-hive-intro/" rel="nofollow noreferrer" target="_blank">Hive安装及使用攻略</a></li>
+<li><a href="http://blog.fens.me/hadoop-hive-10g/" rel="nofollow noreferrer" target="_blank">Hive导入10G数据的测试</a></li>
+<li><a href="http://blog.fens.me/nosql-r-hive/" rel="nofollow noreferrer" target="_blank">R利剑NoSQL系列文章 之 Hive</a></li>
+<li><a href="http://blog.fens.me/finance-rhive-repurchase/" rel="nofollow noreferrer" target="_blank">用RHive从历史数据中提取逆回购信息</a></li>
+</ul>
+
+<p><strong>Pig</strong></p>
+
+<ul>
+<li>Pig学习路线图</li>
+</ul>
+
+<p><strong>Zookeeper</strong></p>
+
+<ul>
+<li>Zookeeper学习路线图</li>
+<li><a href="http://blog.fens.me/hadoop-zookeeper-intro/" rel="nofollow noreferrer" target="_blank">ZooKeeper伪分步式集群安装及使用</a></li>
+<li><a href="http://blog.fens.me/zookeeper-queue/" rel="nofollow noreferrer" target="_blank">ZooKeeper实现分布式队列Queue</a></li>
+<li><a href="http://blog.fens.me/zookeeper-queue-fifo/" rel="nofollow noreferrer" target="_blank">ZooKeeper实现分布式FIFO队列</a></li>
+<li><a href="http://blog.fens.me/hadoop-zookeeper-case/" rel="nofollow noreferrer" target="_blank">基于Zookeeper的分步式队列系统集成案例</a></li>
+</ul>
+
+<p><strong>HBase</strong></p>
+
+<ul>
+<li>HBase学习路线图</li>
+<li><a href="http://blog.fens.me/linux-hbase-install/" rel="nofollow noreferrer" target="_blank">在Ubuntu中安装HBase</a></li>
+<li><a href="http://blog.fens.me/rhadoop-hbase-rhase/" rel="nofollow noreferrer" target="_blank">RHadoop实践系列之四  rhbase安装与使用</a></li>
+</ul>
+
+<p><strong>Mahout</strong></p>
+
+<ul>
+<li><a href="http://blog.fens.me/hadoop-mahout-roadmap/" rel="nofollow noreferrer" target="_blank">Mahout学习路线图</a></li>
+<li><a href="http://blog.fens.me/r-mahout-usercf/" rel="nofollow noreferrer" target="_blank">用R解析Mahout用户推荐协同过滤算法(UserCF)</a></li>
+<li><a href="http://blog.fens.me/rhadoop-mapreduce-rmr/" rel="nofollow noreferrer" target="_blank">RHadoop实践系列之三 R实现MapReduce的协同过滤算法</a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-maven-eclipse/" rel="nofollow noreferrer" target="_blank">用Maven构建Mahout项目</a></li>
+<li><a href="http://blog.fens.me/mahout-recommendation-api/" rel="nofollow noreferrer" target="_blank">Mahout推荐算法API详解</a></li>
+<li><a href="http://blog.fens.me/mahout-recommend-engine/" rel="nofollow noreferrer" target="_blank">从源代码剖析Mahout推荐引擎</a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-mapreduce-itemcf/" rel="nofollow noreferrer" target="_blank">Mahout分步式程序开发 基于物品的协同过滤ItemCF</a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-kmeans/" rel="nofollow noreferrer" target="_blank">Mahout分步式程序开发 聚类Kmeans</a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-recommend-job/" rel="nofollow noreferrer" target="_blank">用Mahout构建职位推荐引擎</a></li>
+<li><a href="http://blog.fens.me/hadoop-mahout-recommend-book/" rel="nofollow noreferrer" target="_blank">Mahout构建图书推荐系统</a></li>
+</ul>
+
+<p><strong>Sqoop</strong></p>
+
+<ul>
+<li>Sqoop学习路线图</li>
+</ul>
+
+<p><strong>Cassandra</strong></p>
+
+<ul>
+<li>Cassandra学习路线图</li>
+<li><a href="http://blog.fens.me/cassandra-clustor/" rel="nofollow noreferrer" target="_blank">Cassandra单集群实验2个节点</a></li>
+<li><a href="http://blog.fens.me/nosql-r-cassandra/" rel="nofollow noreferrer" target="_blank">R利剑NoSQL系列文章 之 Cassandra</a></li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<ol>
+<li>张丹博客<a href="http://blog.fens.me/hadoop-family-roadmap/" rel="nofollow noreferrer" target="_blank">fengs.me</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Zhangqi Kang </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://kangz.cc/2018/hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/>http://kangz.cc/2018/hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://kangz.cc/tags/hadoop/">
+                    #Hadoop</a></span>
+            
+            <span class="tag"><a href="http://kangz.cc/tags/spark/">
+                    #Spark</a></span>
+            
+            <span class="tag"><a href="http://kangz.cc/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                    #大数据</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://kangz.cc">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="http://kangz.cc/2018/hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/" class="next" rel="next" title="Hadoop与Spark的区别">Hadoop与Spark的区别&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2018</span>
+        
+        
+         
+		<span> | Powered by </span>
+		<span class="with-love">
+			<i class="iconfont icon-love"></i> 
+        </span>
+        
+			<span class="author" itemprop="copyrightHolder"><a href="http://kangz.cc">Zhangqi Kang</a></span> 
+        
+
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+
+     </div>
+  </body>
+</html>
