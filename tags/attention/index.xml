@@ -1,71 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Zhangqi Kang</title>
-    <link>http://kangz.cc/posts/</link>
-    <description>Recent content in Posts on Zhangqi Kang</description>
+    <title>attention on Zhangqi Kang</title>
+    <link>http://kangz.cc/tags/attention/</link>
+    <description>Recent content in attention on Zhangqi Kang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 31 Oct 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://kangz.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kangz.cc/tags/attention/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>文本处理awk指令</title>
-      <link>http://kangz.cc/2018/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86awk%E6%8C%87%E4%BB%A4/</link>
-      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://kangz.cc/2018/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86awk%E6%8C%87%E4%BB%A4/</guid>
-      <description>AWK是一种处理文本文件的语言，是一个强大的文本分析工具。之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter Weinberger, 和 Brian Kernighan 的Family Name的首字符。
-语法 awk [选项参数] &#39;script&#39; var=value file(s) awk [选项参数] -f scriptfile var=value file(s)  选项参数说明  -F fs or &amp;ndash;field-separator fs 指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:。 -v var=value or &amp;ndash;asign var=value 赋值一个用户定义变量。 -f scripfile or &amp;ndash;file scriptfile 从脚本文件中读取awk命令。 -mf nnn and -mr nnn 对nnn值设置内在限制，-mf选项限制分配给nnn的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。 -W compact or &amp;ndash;compat, -W traditional or &amp;ndash;traditional 在兼容模式下运行awk。所以gawk的行为和标准的awk完全一样，所有的awk扩展都被忽略。 -W copyleft or &amp;ndash;copyleft, -W copyright or &amp;ndash;copyright 打印简短的版权信息。 -W help or &amp;ndash;help, -W usage or &amp;ndash;usage 打印全部awk选项和每个选项的简短说明。 -W lint or &amp;ndash;lint 打印不能向传统unix平台移植的结构的警告。 -W lint-old or &amp;ndash;lint-old 打印关于不能向传统unix平台移植的结构的警告。 -W posix 打开兼容模式。但有以下限制，不识别：/x、函数关键字、func、换码序列以及当fs是一个空格时，将新行作为一个域分隔符；操作符和=不能代替^和^=；fflush无效。 -W re-interval or &amp;ndash;re-inerval 允许间隔正则表达式的使用，参考(grep中的Posix字符类)，如括号表达式[[:alpha:]]。 -W source program-text or &amp;ndash;source program-text 使用program-text作为源代码，可与-f命令混用。 -W version or &amp;ndash;version 打印bug报告信息的版本。  基本用法 已有log.</description>
-    </item>
-    
-    <item>
-      <title>1.Hadoop学习路线图</title>
-      <link>http://kangz.cc/2018/1_hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/</link>
-      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://kangz.cc/2018/1_hadoop%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/</guid>
-      <description>Hadoop家族常用的项目包括:Hadoop, Hive, Pig, HBase, Sqoop, Mahout,Zookeeper,Avro,Ambari,Chukwa。新增加的项目包括:YARN,Hcatalog,Oozie,Cassandra,Hama,Whirr,Flume,Bigtop,Crunch,Hue等
-主要知识点  hadoop基本概念、伪分布式Hadoop集群、HDFS、MapReduce演示 HDFS原理、使用 MapReduce原理、使用 常见算法在Hadoop上的实现和shuffle机制 Hadoop中HA机制的原理全分布式集群部署 Hbase Hive 原理 storm（实时计算） kafka（消息队列） 实战项目练习  学习路线 Hadoop家族产品  Apache Hadoop: 是Apache开源组织的一个分布式计算开源框架，提供了一个分布式文件系统子项目HDFS（Hadoop Distributed FileSystem,HDFS）和支持MapReduce分布式计算的软件架构。 Apache Hive: 是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，通过类SQL语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。 Apache Pig: 是一个基于Hadoop的大规模数据分析工具，它提供的SQL-LIKE语言叫Pig Latin，该语言的编译器会把类SQL的数据分析请求转换为一系列经过优化处理的MapReduce运算。 Apache HBase: 是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server上搭建起大规模结构化存储集群。 Apache Sqoop: 是一个用来将Hadoop和关系型数据库中的数据相互转移的工具，可以将一个关系型数据库（MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。 Apache Zookeeper: 是一个为分布式应用所设计的分布的、开源的协调服务，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。 Apache Mahout:是基于Hadoop的机器学习和数据挖掘的一个分布式框架。Mahout用MapReduce实现了部分数据挖掘算法，解决了并行挖掘的问题。 Apache Cassandra:是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存简单格式数据，集Google BigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身。 Apache Avro: 是一个数据序列化系统，设计用于支持数据密集型，大批量数据交换的应用。Avro是新的数据序列化格式与传输工具，将逐步取代Hadoop原有的IPC机制 Apache Ambari: 是一种基于Web工具，支持Hadoop集群的供应、管理和监控。 Apache Chukwa: 是一个开源的用于监控大型分布式系统的数据收集系统，它可以将各种各样类型的数据收集成适合 Hadoop 处理的文件保存在 HDFS 中供 Hadoop 进行各种 MapReduce 操作。 Apache Hama: 是一个基于HDFS的BSP（Bulk Synchronous Parallel)并行计算框架, Hama可用于包括图、矩阵和网络算法在内的大规模、大数据计算。 Apache Flume: 是一个分布的、可靠的、高可用的海量日志聚合的系统，可用于日志数据收集，日志数据处理，日志数据传输。 Apache Giraph: 是一个可伸缩的分布式迭代图处理系统， 基于Hadoop平台，灵感来自 BSP (bulk synchronous parallel) 和 Google 的 Pregel。 Apache Oozie: 是一个工作流引擎服务器, 用于管理和协调运行在Hadoop平台上（HDFS、Pig和MapReduce）的任务。 Apache Crunch: 是基于Google的FlumeJava库编写的Java库，用于创建MapReduce程序。与Hive，Pig类似，Crunch提供了用于实现如连接数据、执行聚合和排序记录等常见任务的模式库 Apache Whirr: 是一套运行于云服务的类库（包括Hadoop），可提供高度的互补性。Whirr学支持Amazon EC2和Rackspace的服务。 Apache Bigtop: 是一个对Hadoop及其周边生态进行打包，分发和测试的工具。 Apache HCatalog: 是基于Hadoop的数据表和存储管理，实现中央的元数据和模式管理，跨越Hadoop和RDBMS，利用Pig和Hive提供关系视图。 Cloudera Hue: 是一个基于WEB的监控和管理系统，实现对HDFS，MapReduce/YARN, HBase, Hive, Pig的web化操作和管理。  Hadoop家族博客文章 下面我将分别介绍各个产品的安装和使用，以我经验总结我的学习路线。</description>
-    </item>
-    
-    <item>
-      <title>2.Hadoop学习资源</title>
-      <link>http://kangz.cc/2018/2_hadoop%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</link>
-      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://kangz.cc/2018/2_hadoop%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</guid>
-      <description> 博客  张丹博客fengs.me 大数据学习笔记gitbook hadoop-notebook 看云  书籍 理论  Hadoop权威指南  应用  数据算法 Hadoop/Spark大数据处理技巧  ​
-视频  8天学会Hadoop基础 bilibili  </description>
-    </item>
-    
-    <item>
-      <title>3.Hadoop Spark 初探</title>
-      <link>http://kangz.cc/2018/3_hadoop_spark_%E5%88%9D%E6%8E%A2/</link>
-      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://kangz.cc/2018/3_hadoop_spark_%E5%88%9D%E6%8E%A2/</guid>
-      <description> 资源清单  补充材料本书官网hadoop GitHub 仓库Github ​  </description>
-    </item>
-    
-    <item>
-      <title>4.Hadoop与Spark的区别</title>
-      <link>http://kangz.cc/2018/4_hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
-      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://kangz.cc/2018/4_hadoop%E4%B8%8Espark%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
-      <description>解决不同层面的问题 Hadoop和Spark两者都是大数据框架，但是各自存在的目的不尽相同。
-Hadoop实质上更多是一个分布式数据基础设施: 它将巨大的数据集分派到一个由普通计算机组成的集群中的多个节点进行存储，意味着您不需要购买和维护昂贵的服务器硬件。 同时，Hadoop还会索引和跟踪这些数据，让大数据处理和分析效率达到前所未有的高度。
-Spark则是一个专门用来对那些分布式存储的大数据进行处理的工具，它并不会进行分布式数据的存储。
-应用场景的区别 Hadoop除了提供为大家所共识的HDFS分布式数据存储功能之外，还提供了叫做MapReduce的数据处理功能。所以这里我们完全可以抛开Spark，使用Hadoop自身的MapReduce来完成数据的处理。
-Spark也不是非要依附在Hadoop身上才能生存。但如上所述，毕竟它没有提供文件管理系统，所以，它必须和其他的分布式文件系统进行集成才能运作。这里我们可以选择Hadoop的HDFS,也可以选择其他的基于云的数据系统平台。但Spark默认来说还是被用在Hadoop上面的，毕竟，大家都认为它们的结合是最好的。
-MapReduce举例假设我们要数图书馆中的所有书。你数1号书架，我数2号书架。这就是“Map”。我们人越多，数书就更快。现在我们到一起，把所有人的统计数加在一起。这就是“Reduce”。
-数据处理速度的区别 Spark因为其处理数据的方式不一样，会比MapReduce快上很多。MapReduce是分步对数据进行处理的：从集群中读取数据，进行一次处理，将结果写到集群，从集群中读取更新后的数据，进行下一次的处理，将结果写到集群，等等。反观Spark，它会在内存中以接近“实时”的时间完成所有的数据分析：从集群中读取数据，完成所有必须的分析处理，将结果写回集群，完成。Spark的批处理速度比MapReduce快近10倍，内存中的数据分析速度则快近100倍。
-可以根据应用场景选择Hadoop或Spark。如果需要处理的数据和结果需求大部分情况下是静态的，且你也有耐心等待批处理的完成的话，MapReduce的处理方式也是完全可以接受的。但如果你需要对流数据进行分析，比如那些来自于工厂的传感器收集回来的实时数据，又或者说你的应用是需要多重数据处理的，那么你也许更应该使用Spark进行处理。
-大部分机器学习算法都是需要多重数据处理的。此外，通常会用到Spark的应用场景有以下方面：实时的市场活动，在线产品推荐，网络安全分析，机器日记监控等。</description>
-    </item>
     
     <item>
       <title>深度学习中的attention机制</title>
