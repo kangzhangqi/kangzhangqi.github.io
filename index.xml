@@ -6,8 +6,17 @@
     <description>Recent content in Zhangqi Kang on Zhangqi Kang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Dec 2018 05:42:03 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Att1</title>
+      <link>http://kangz.cc/att1/</link>
+      <pubDate>Mon, 17 Dec 2018 05:42:03 +0800</pubDate>
+      
+      <guid>http://kangz.cc/att1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>文本处理awk指令</title>
@@ -1257,79 +1266,6 @@ which has received &lt;strong&gt;11 contributions by 5 contributors&lt;/strong&g
 &lt;li&gt;nfpm replacements &lt;a href=&#34;https://github.com/gohugoio/hugo/commit/e1a052ecb823c688406a8af97dfaaf52a75231da&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;e1a052ec&lt;/a&gt; &lt;a href=&#34;https://github.com/caarlos0&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;@caarlos0&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Fix typos &lt;a href=&#34;https://github.com/gohugoio/hugo/commit/3cea2932e17a08ebc19cd05f3079d9379bc8fba5&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;3cea2932&lt;/a&gt; &lt;a href=&#34;https://github.com/idealhack&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;@idealhack&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>HTTP/2 Server Push in Hugo</title>
-      <link>http://kangz.cc/2017/http2-server-push-in-hugo/</link>
-      <pubDate>Mon, 24 Jul 2017 18:36:00 +0200</pubDate>
-      
-      <guid>http://kangz.cc/2017/http2-server-push-in-hugo/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Netlify&lt;/strong&gt; recently announced support for &lt;a href=&#34;https://www.netlify.com/blog/2017/07/18/http/2-server-push-on-netlify/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;HTTP/2 server push&lt;/a&gt;, and we have now added it to the &lt;strong&gt;gohugo.io&lt;/strong&gt; sites for the main &lt;code&gt;CSS&lt;/code&gt; and &lt;code&gt;JS&lt;/code&gt; bundles, along with server-side 301 redirect support.&lt;/p&gt;
-
-&lt;p&gt;If you navigate to &lt;a href=&#34;https://gohugo.io&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://gohugo.io&lt;/a&gt; and look in the Chrome developer network console, you should now see &lt;code&gt;Push&lt;/code&gt; as the new source (&amp;ldquo;Initiator&amp;rdquo;) for the &lt;code&gt;CSS&lt;/code&gt; and &lt;code&gt;JSS&lt;/code&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Setting up this in Hugo was easy:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;1-configure-netlify-output-formats&#34;&gt;1. Configure Netlify Output Formats&lt;/h2&gt;
-
-&lt;p&gt;Add a new custom media type and two new output formats to &lt;code&gt;config.toml&lt;/code&gt;. For more on output formats in Hugo, see &lt;a href=&#34;http://kangz.cc/templates/output-formats/&#34;&gt;Custom Output Formats&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;[outputs]
-home = [ &amp;quot;HTML&amp;quot;, &amp;quot;RSS&amp;quot;, &amp;quot;REDIR&amp;quot;, &amp;quot;HEADERS&amp;quot; ]
-
-[mediaTypes]
-[mediaTypes.&amp;quot;text/netlify&amp;quot;]
-suffix = &amp;quot;&amp;quot;
-delimiter = &amp;quot;&amp;quot;
-
-[outputFormats]
-[outputFormats.REDIR]
-mediatype = &amp;quot;text/netlify&amp;quot;
-baseName = &amp;quot;_redirects&amp;quot;
-isPlainText = true
-notAlternative = true
-[outputFormats.HEADERS]
-mediatype = &amp;quot;text/netlify&amp;quot;
-baseName = &amp;quot;_headers&amp;quot;
-isPlainText = true
-notAlternative = true
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;2-add-template-for-the-headers-file&#34;&gt;2. Add Template For the _headers File&lt;/h2&gt;
-
-&lt;p&gt;Add &lt;code&gt;layouts/index.headers&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/*
-  X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: origin-when-cross-origin
-*/
-  Link: &amp;lt;{{ &amp;quot;dist/app.bundle.js&amp;quot; | relURL }}&amp;gt;; rel=preload; as=script
-  Link: &amp;lt;{{ &amp;quot;dist/main.css&amp;quot; | relURL }}&amp;gt;; rel=preload; as=style
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The template above creates both a security header definition and a HTTP/2 server push configuration.&lt;/p&gt;
-
-&lt;p&gt;Also note that this is a template for the home page, so the full &lt;code&gt;Page&lt;/code&gt; with its &lt;code&gt;Site&lt;/code&gt; and many variables are available. You can also use &lt;code&gt;partial&lt;/code&gt; to include other templates.&lt;/p&gt;
-
-&lt;h2 id=&#34;3-add-template-for-the-redirects-file&#34;&gt;3. Add Template For the _redirects File&lt;/h2&gt;
-
-&lt;p&gt;Add &lt;code&gt;layouts/index.redir&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Netlify redirects. See https://www.netlify.com/docs/redirects/
-{{  range $p := .Site.Pages -}}
-{{ range .Aliases }}
-{{  . | printf &amp;quot;%-35s&amp;quot; }}	{{ $p.RelPermalink -}}
-{{ end -}}
-{{- end -}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The template above creates 301 redirects for your &lt;a href=&#34;http://kangz.cc/content-management/urls/#aliases&#34;&gt;aliases&lt;/a&gt;, so you will probably want to turn off aliases in your &lt;code&gt;config.toml&lt;/code&gt;: &lt;code&gt;disableAliases = true&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
